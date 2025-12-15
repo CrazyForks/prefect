@@ -6,6 +6,7 @@ import type { FlowRunCardData } from "@/components/flow-runs/flow-run-card";
 import {
 	DateRangeFilter,
 	type DateRangeUrlState,
+	DeploymentFilter,
 	FlowFilter,
 	type FlowRunState,
 	FlowRunsList,
@@ -60,6 +61,10 @@ type RunsPageProps = {
 	onStateFilterChange: (states: Set<FlowRunState>) => void;
 	selectedFlows: Set<string>;
 	onFlowFilterChange: (flows: Set<string>) => void;
+	selectedDeployments: Set<string>;
+	onDeploymentFilterChange: (deployments: Set<string>) => void;
+	selectedWorkPools: Set<string>;
+	onWorkPoolFilterChange: (workPools: Set<string>) => void;
 	dateRange: DateRangeUrlState;
 	onDateRangeChange: (dateRange: DateRangeUrlState) => void;
 	// Task runs props
@@ -96,6 +101,13 @@ export const RunsPage = ({
 	onStateFilterChange,
 	selectedFlows,
 	onFlowFilterChange,
+	selectedDeployments,
+	onDeploymentFilterChange,
+	// Work pool filter props - UI component to be implemented in a separate ticket
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	selectedWorkPools: _selectedWorkPools,
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	onWorkPoolFilterChange: _onWorkPoolFilterChange,
 	dateRange,
 	onDateRangeChange,
 	// Task runs props
@@ -167,6 +179,12 @@ export const RunsPage = ({
 					<FlowFilter
 						selectedFlows={selectedFlows}
 						onSelectFlows={onFlowFilterChange}
+					/>
+				</div>
+				<div className="w-64">
+					<DeploymentFilter
+						selectedDeployments={selectedDeployments}
+						onSelectDeployments={onDeploymentFilterChange}
 					/>
 				</div>
 				<DateRangeFilter value={dateRange} onValueChange={onDateRangeChange} />
